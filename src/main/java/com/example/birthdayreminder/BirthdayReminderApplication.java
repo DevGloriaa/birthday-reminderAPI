@@ -7,7 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class BirthdayReminderApplication {
 
     public static void main(String[] args) {
+
         SpringApplication.run(BirthdayReminderApplication.class, args);
+        System.out.println("Birthday reminder app running🎊");
     }
 
 }
