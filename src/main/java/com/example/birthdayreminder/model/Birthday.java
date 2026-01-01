@@ -1,5 +1,6 @@
 package com.example.birthdayreminder.model;
 
+import com.example.birthdayreminder.enums.Category;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -20,4 +21,6 @@ public class Birthday {
     private String note;
 
     private String userEmail;
+
+    private Category category;
 }
