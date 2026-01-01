@@ -2,6 +2,7 @@ package com.example.birthdayreminder.serviceImpl;
 
 import com.example.birthdayreminder.dto.BirthdayResponse;
 import com.example.birthdayreminder.dto.CreateBirthdayRequest;
+import com.example.birthdayreminder.enums.Category;
 import com.example.birthdayreminder.model.Birthday;
 import com.example.birthdayreminder.repository.BirthdayRepository;
 import com.example.birthdayreminder.service.BirthdayService;
@@ -25,13 +26,16 @@ public class BirthdayServiceImpl implements BirthdayService {
         birthday.setNote(request.getNote());
         birthday.setUserEmail(userEmail);
 
+        birthday.setCategory(request.getCategory() != null ? request.getCategory() : Category.OTHER);
+
         Birthday savedBirthday = birthdayRepository.save(birthday);
 
         return new BirthdayResponse(
                 savedBirthday.getId(),
                 savedBirthday.getName(),
                 savedBirthday.getDate(),
-                savedBirthday.getNote()
+                savedBirthday.getNote(),
+                savedBirthday.getCategory()
         );
     }
 
@@ -44,7 +48,8 @@ public class BirthdayServiceImpl implements BirthdayService {
                         b.getId(),
                         b.getName(),
                         b.getDate(),
-                        b.getNote()
+                        b.getNote(),
+                        b.getCategory() // Return category to frontend
                 ))
                 .toList();
     }
